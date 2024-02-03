@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "1ad8c9f4-9b6e-4af6-8476-9653bb42502b",
+		"name": "kafka",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13578595"
+	},
+	"item": [
+		{
+			"name": "getConnector",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8083/connectors/outbox"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteConnector",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "localhost:8083/connectors/outbox"
+			},
+			"response": []
+		},
+		{
+			"name": "addConnector",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"outbox\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\",\r\n        \"database.history.kafka.bootstrap.servers\":\"kafka:9092\",\r\n        \"database.history.kafka.topic\":\"schema-changes.movies\",\r\n        \"tasks.max\": \"1\",\r\n        \"database.hostname\": \"db\",\r\n        \"database.port\": \"5432\",\r\n        \"database.user\": \"postgres\",\r\n        \"database.password\": \"postgres\",\r\n        \"database.dbname\": \"dgn\",\r\n        \"database.server.name\": \"postgres\",\r\n        \"topic.prefix\": \"outbox\",\r\n        \"table.include.list\": \"public.outbox\",\r\n        \"tombstones.on.delete\": \"false\",\r\n        \"table.field.event.payload\": \"payload\",\r\n        \"skipped.operations\": \"d\",\r\n        \"key.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n        \"key.converter.schemas.enable\": \"false\",\r\n        \"value.converter\": \"org.apache.kafka.connect.json.JsonConverter\",\r\n        \"value.converter.schemas.enable\": \"false\"\r\n        \r\n       \r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8083/connectors/"
+			},
+			"response": []
+		}
+	]
+}
